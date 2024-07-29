@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { fetchUser } from '../utils/user';
+import Counter from '../components/Counter';
 
 interface Props {
 	user: any;
@@ -19,5 +20,6 @@ const user = await fetchUser(userCookie);
 		<p class="text-xl">{user.email}</p>
 		<p class="text-lg mb-6">{user.website}</p>
 		<img src={`https://maps.googleapis.com/maps/api/staticmap?center=${user.address.geo.lat},${user.address.geo.lng}&zoom=14&size=400x400&key=AIzaSyDhxZAPs4ZM0rvTqeAEewNobc11FBVFxgI`} alt="Map" />
+		<Counter count={1} client:visible />
 	</main>
 </Layout>

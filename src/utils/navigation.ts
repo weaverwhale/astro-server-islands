@@ -1,35 +1,35 @@
 export const NAV = [
   {
     name: 'Home',
-    link: '/'
+    link: '/',
   },
   {
-    name: 'About',
-    link: '/about'
+    name: 'Posts',
+    link: '/posts',
   },
-  {
-    name: 'Contact',
-    link: '/contact'
-  }
-]
+];
 
 export const LOGIN = {
   name: 'Login',
-  link: '/login'
-}
+  link: '/login',
+};
 
 export const LOGOUT = {
   name: 'Logout',
-  link: '/logout'
-}
+  link: '/logout',
+};
 
 export const SUPER_USER_NAV = [
   {
     name: 'Admin',
-    link: '/admin'
-  }
-]
+    link: '/admin',
+  },
+];
 
 export const computeNav = (user: User) => {
-  return user && user.role === 'super' ? [...NAV, ...SUPER_USER_NAV, LOGOUT] : user ? [...NAV, LOGOUT] : [LOGIN]
-}
+  return user && user.role === 'super'
+    ? [...NAV, ...SUPER_USER_NAV, LOGOUT]
+    : user
+    ? [...NAV, LOGOUT]
+    : [LOGIN];
+};

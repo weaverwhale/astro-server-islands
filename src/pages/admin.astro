@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Counter from '../components/Counter';
 import { fetchUser, isUserAdmin } from '../utils/user';
 
 interface Props {
@@ -18,6 +19,7 @@ if (!isUserAdmin(user)) {
 <Layout title="Admin" user={user}>
 	<main>
 		<h1 class="text-3xl mb-4">Admin</h1>
-		<p>You are seeing this page because you are a "super" user</p>
+		<p>You are seeing this page because you are a "super" user!</p>
+		<Counter count={1} client:visible />
 	</main>
 </Layout>

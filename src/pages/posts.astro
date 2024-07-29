@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Posts from '../components/Posts.tsx';
+import { fetchUser } from '../utils/user.ts';
+import { fetchPosts } from '../utils/posts.ts';
+
+interface Props {
+	user: any;
+}
+
+const userCookie = Astro.cookies.get('user');
+if(!userCookie || !userCookie?.value) return Astro.redirect('/login')
+const user = await fetchUser(userCookie.value);
+const posts = await fetchPosts(userCookie.value) as Post[];
+---
+
+<Layout title="Posts" user={user}>
+	<main>
+		<h1 class="text-3xl mb-4">Posts from { user.name }</h1>
+		<Posts posts={posts} />
+	</main>
+</Layout>
