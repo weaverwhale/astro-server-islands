@@ -7,9 +7,8 @@ interface Props {
 }
 
 const userCookie = Astro.cookies.get('user')?.value;
-console.log('hi', userCookie)
-// if(!userCookie || !userCookie?.value) return Astro.redirect('/login')
-const user = await fetchUser(userCookie ?? 1);
+if(!userCookie) return Astro.redirect('/login')
+const user = await fetchUser(userCookie);
 
 ---
 

@@ -13,15 +13,12 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   );
   if (user.id) {
     cookies.set('user', id, {
-      sameSite: 'strict',
+      sameSite: 'lax',
       path: '/',
+      secure: false,
     });
 
-    console.log(cookies.get('user'));
-
-    return new Response(JSON.stringify(user), {
-      headers: { 'Set-Cookie': `user=${id}` },
-    });
+    return new Response(JSON.stringify(user));
   }
 
   return new Response(JSON.stringify({ error: 'Could not find a user' }));
