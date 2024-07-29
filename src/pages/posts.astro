@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Posts from '../components/Posts.tsx';
+import PostsList from '../components/PostsList.tsx';
 import { fetchUser } from '../utils/user.ts';
 import { fetchPosts } from '../utils/posts.ts';
 
@@ -17,6 +17,6 @@ const posts = await fetchPosts(userCookie.value) as Post[];
 <Layout title="Posts" user={user}>
 	<main>
 		<h1 class="text-3xl mb-4">Posts from { user.name }</h1>
-		<Posts posts={posts} />
+		<PostsList posts={posts} />
 	</main>
 </Layout>

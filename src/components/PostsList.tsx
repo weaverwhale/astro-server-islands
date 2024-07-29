@@ -1,4 +1,4 @@
-export default function Posts({ posts }: { posts: Post[] }) {
+export default function PostsList({ posts }: { posts: Post[] }) {
   return (
     <div className="posts grid sm:grid-cols-2 md:grid-cols-3 gap-4">
       {posts.map((post) => (
