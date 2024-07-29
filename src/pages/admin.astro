@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Counter from '../components/Counter';
 import { fetchUser, isUserAdmin } from '../utils/user';
+import UsersList from '../components/UsersList.tsx';
 
 interface Props {
 	user: any;
@@ -14,12 +14,16 @@ const user = await fetchUser(userCookie.value);
 if (!isUserAdmin(user)) {
   return Astro.redirect('/');
 }
+
+const host = Astro.request.headers.get("host");
+const protocol = import.meta.env.NODE_ENV==="development"?"http":"https"
+const users = await fetch(`${protocol}:${host}/actions/users`).then((res) => res.json());
 ---
 
 <Layout title="Admin" user={user}>
 	<main>
 		<h1 class="text-3xl mb-4">Admin</h1>
 		<p>You are seeing this page because you are a "super" user!</p>
-		<Counter count={1} client:visible />
+		<UsersList users={users} />
 	</main>
 </Layout>
