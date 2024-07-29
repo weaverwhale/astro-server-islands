@@ -7,7 +7,7 @@ export const fetchUser = async (id?: string | number) => {
     return { error: 'User not found' };
   }
 
-  return { ...user, role: 'super' };
+  return { ...user, role: id === 1 ? 'super' : 'user' };
 };
 
 export const isUserAdmin = (user: User) => {
