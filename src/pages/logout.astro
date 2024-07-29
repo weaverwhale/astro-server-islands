@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Logout">
+	<main>
+		<h1 class="text-3xl mb-4">Logout</h1>
+    <p>Logging you out...</p>
+	</main>
+</Layout>
+
+<script>
+	fetch('/actions/logout', { method: 'POST'}).then(() => {
+		window.location.href = '/login';
+	});	
+</script>

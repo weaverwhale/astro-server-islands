@@ -1,0 +1,20 @@
+---
+import { computeNav } from '../utils/navigation';
+
+interface Props {
+	user: any;
+}
+
+const { user } = Astro.props
+const nav = computeNav(user);
+---
+
+<nav class="flex gap-4 items-center justify-between border border-b p-4">
+	<a href={user?.id ? '/' : '/login'}><img src="/favicon.svg" alt="Logo" class="w-8 h-8" /></a>
+	<ul class="flex gap-4">
+		{nav.map((i) => (
+			<li><a href={i.link}>{i.name}</a></li>
+		))}
+	</ul>
+</nav>
+	

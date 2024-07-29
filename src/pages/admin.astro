@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchUser, isUserAdmin } from '../utils/user';
+
+interface Props {
+	user: any;
+}
+
+const userCookie = Astro.cookies.get('user');
+if(!userCookie || !userCookie?.value) return Astro.redirect('/login')
+const user = await fetchUser(userCookie.value);
+
+if (!isUserAdmin(user)) {
+  return Astro.redirect('/');
+}
+---
+
+<Layout title="Admin" user={user}>
+	<main>
+		<h1 class="text-3xl mb-4">Admin</h1>
+		<p>You are seeing this page because you are a "super" user</p>
+	</main>
+</Layout>
