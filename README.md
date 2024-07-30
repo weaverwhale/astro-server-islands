@@ -1,5 +1,9 @@
 # Astro Server Islands
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2a98aa56-4723-45eb-9971-1c4ab16f8d01/deploy-status)](https://app.netlify.com/sites/tw-astro-ssr/deploys)
+
+https://tw-astro-ssr.netlify.app/
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
