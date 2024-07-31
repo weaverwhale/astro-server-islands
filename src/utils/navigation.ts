@@ -7,6 +7,10 @@ export const NAV = [
     name: 'Posts',
     link: '/posts',
   },
+  {
+    name: 'Account',
+    link: '/account',
+  },
 ];
 
 export const LOGIN = {

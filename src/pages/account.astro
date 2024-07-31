@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchUser, isUserAdmin } from '../utils/user';
+
+interface Props {
+	user: any;
+}
+
+const userCookie = Astro.cookies.get('user')?.value;
+if(!userCookie) return Astro.redirect('/login')
+const user = await fetchUser(userCookie);
+---
+
+<Layout title="Homepage" user={user}>
+	<main>
+		<h1 class="text-3xl mb-2">Welcome, {user.name}!</h1>
+    {isUserAdmin && <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Admin</span>}
+    <p class="text-2xl mt-7">Username: {user.username}</p>
+    <p class="text-xl">Email: {user.email}</p>
+    <p class="text-lg mb-6">Website: {user.website}</p>
+    <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${user.address.geo.lat},${user.address.geo.lng}&zoom=14&size=400x400&key=AIzaSyDhxZAPs4ZM0rvTqeAEewNobc11FBVFxgI`} alt="Map" />
+	</main>
+</Layout>
