@@ -7,7 +7,7 @@ export const fetchUser = async (id?: string | number) => {
     return { error: 'User not found' };
   }
 
-  return { ...user, role: id === '1' ? 'super' : 'user' };
+  return { ...user, role: id.toString() === '1' ? 'super' : 'user' };
 };
 
 export const isUserAdmin = (user: User) => {
@@ -23,7 +23,7 @@ export const fetchUserCustomizations = async (id: string | number) => {
       title: 'Welcome!',
       content:
         'Welcome to the site! This data is fetched SSR, and rendered on the client SPA. We could render this server side, but are choosing not to for demonstration purposes.',
-      permissions: ['user'],
+      permissions: ['user', 'super'],
     },
     {
       id: '2',
@@ -36,17 +36,19 @@ export const fetchUserCustomizations = async (id: string | number) => {
       id: '3',
       title: 'Posts',
       content: 'You can view your posts here.',
-      permissions: ['user'],
+      permissions: ['user', 'super'],
       link: '/posts',
     },
     {
       id: '3',
       title: 'Account',
       content: 'You can view your account here.',
-      permissions: ['user'],
+      permissions: ['user', 'super'],
       link: '/account',
     },
   ];
+
+  console.log(user.role);
 
   return userBlocks.filter((block) => block.permissions.includes(user.role));
 };
